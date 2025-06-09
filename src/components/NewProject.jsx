@@ -1,3 +1,5 @@
+import Input from "./Input.jsx";
+
 export default function NewProject() {
   return (
     <div>
@@ -10,18 +12,9 @@ export default function NewProject() {
         </li>
       </menu>
       <div>
-        <p>
-          <label>عنوان</label>
-          <input />
-        </p>
-        <p>
-          <label>توضیح</label>
-          <textarea />
-        </p>
-        <p>
-          <label>تاریخ تحویل</label>
-          <input />
-        </p>
+        <Input label="عنوان" />
+        <Input label="توضیح" textarea />
+        <Input label="تاریخ تحویل" />
       </div>
     </div>
   );
