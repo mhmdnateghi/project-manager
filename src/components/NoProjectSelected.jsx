@@ -1,4 +1,5 @@
 import NoProjectImage from "../assets/logo.png";
+import Button from "./Button.jsx";
 
 export default function NoProjectSelected() {
   return (
@@ -9,13 +10,13 @@ export default function NoProjectSelected() {
         className="w-16 h-16 object-contain mx-auto"
       />
       <h2 className="text-xl font-bold text-stone-500 my-4">
-        No Project Selected
+        !پروژه‌ای انتخاب نشده
       </h2>
       <p className="text-stone-400 mb-4">
-        Select a project or get started with a new one
+        .یک پروژه انتخاب کنید یا یک پروژه‌ی جدید ایجاد کنید
       </p>
       <p className="mt-8">
-        <button>Create new project</button>
+        <Button>ایجاد پروژه جدید</Button>
       </p>
     </div>
   );
