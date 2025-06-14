@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Vazirmatn", system-ui, sans-serif;
+  --color-primary: hsl(220, 60%, 50%);
+  --breakpoint-3xl: 1920px;
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}

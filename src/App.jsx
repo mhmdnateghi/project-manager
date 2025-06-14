@@ -1,7 +1,7 @@
 import ProjectsSidebar from "./components/ProjectsSidebar.jsx";
 // import NewProject from "./components/NewProject.jsx";
 import NoProjectSelected from "./components/NoProjectSelected.jsx";
-import "./App.css";
+import "./index.css";
 
 function App() {
   return (
