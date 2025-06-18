@@ -1,6 +1,6 @@
 import Button from "./Button.jsx";
 
-export default function ProjectsSidebar() {
+export default function ProjectsSidebar({ onStartAddProject }) {
   return (
     <>
       <aside className="w-1/3 px-8 py-16 bg-stone-900 text-stone-50 md:w-72 rounded-r-xl">
@@ -8,7 +8,7 @@ export default function ProjectsSidebar() {
           پروژه ها
         </h2>
         <div className="flex justify-end">
-          <Button>اضافه کردن +</Button>
+          <Button onClick={onStartAddProject}>اضافه کردن +</Button>
         </div>
       </aside>
     </>
