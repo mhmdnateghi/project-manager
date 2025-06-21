@@ -2,7 +2,7 @@ import { useRef } from "react";
 import Input from "./Input.jsx";
 import Modal from "./Modal.jsx";
 
-export default function NewProject({ onAdd }) {
+export default function NewProject({ onAdd, onCancel }) {
   const title = useRef();
   const description = useRef();
   const dueDate = useRef();
@@ -33,9 +33,15 @@ export default function NewProject({ onAdd }) {
   return (
     <>
       <Modal ref={modal}>
-        <h1>Invalid Input</h1>
-        <p>Oops ... looks like you forgot to enter a value.</p>
-        <p>Please make sure you provide a valid value for every input field.</p>
+        <h2 className="text-xl text-center font-bold text-stone-700 my-4">
+          !ورودی نامعتبر است
+        </h2>
+        <p className="text-stone-600 text-center mb-4">
+          .اوه... به نظر می‌رسه مقداری وارد نکردید
+        </p>
+        <p className="text-stone-600 text-center mb-4">
+          .لطفاً مطمئن شوید که تمام قسمت‌ها به‌درستی پر شده‌اند
+        </p>
       </Modal>
       <div className="w-[35rem] mt-16">
         <menu className="flex items-center justify-start gap-4 my-4">
@@ -48,7 +54,12 @@ export default function NewProject({ onAdd }) {
             </button>
           </li>
           <li>
-            <button className="text-stone-800 hover:text-stone-950">لغو</button>
+            <button
+              className="text-stone-800 hover:text-stone-950"
+              onClick={onCancel}
+            >
+              لغو
+            </button>
           </li>
         </menu>
         <div>
