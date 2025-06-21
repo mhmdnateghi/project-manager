@@ -43,7 +43,7 @@ export default function NewProject({ onAdd, onCancel }) {
           .لطفاً مطمئن شوید که تمام قسمت‌ها به‌درستی پر شده‌اند
         </p>
       </Modal>
-      <div className="w-[35rem] mt-16">
+      <div className="w-[35rem] mt-16 ml-auto mr-96">
         <menu className="flex items-center justify-start gap-4 my-4">
           <li>
             <button
