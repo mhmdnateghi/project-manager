@@ -51,6 +51,7 @@ function App() {
   } else if (projectState.selectedProjectID === undefined) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   }
+
   return (
     <>
       <main className="h-screen my-8 flex gap-8">
