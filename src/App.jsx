@@ -1,17 +1,18 @@
 import ProjectsSidebar from "./components/ProjectsSidebar.jsx";
 import NewProject from "./components/NewProject.jsx";
 import NoProjectSelected from "./components/NoProjectSelected.jsx";
+import SelectedProject from "./components/SelectedProject.jsx";
 import "./index.css";
 import { useState } from "react";
 
 function App() {
-  const [projectState, setProjectState] = useState({
+  const [projectsState, setProjectsState] = useState({
     selectedProjectID: undefined,
     projects: [],
   });
 
   function handleStartAddProject() {
-    setProjectState((prevState) => {
+    setProjectsState((prevState) => {
       return {
         ...prevState,
         selectedProjectID: null,
@@ -20,7 +21,7 @@ function App() {
   }
 
   function handleCancelAddProject() {
-    setProjectState((prevState) => {
+    setProjectsState((prevState) => {
       return {
         ...prevState,
         selectedProjectID: undefined,
@@ -29,7 +30,7 @@ function App() {
   }
 
   function handleAddProject(projectData) {
-    setProjectState((prevState) => {
+    setProjectsState((prevState) => {
       const newProject = {
         ...projectData,
         id: Math.random(),
@@ -43,12 +44,26 @@ function App() {
     });
   }
 
-  let content;
-  if (projectState.selectedProjectID === null) {
+  function handleSelectProject(id) {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectID: id,
+      };
+    });
+  }
+
+  const selectedProject = projectsState.projects.find(
+    (project) => project.id === projectsState.selectedProjectID
+  );
+
+  let content = <SelectedProject project={selectedProject} />;
+
+  if (projectsState.selectedProjectID === null) {
     content = (
       <NewProject onAdd={handleAddProject} onCancel={handleCancelAddProject} />
     );
-  } else if (projectState.selectedProjectID === undefined) {
+  } else if (projectsState.selectedProjectID === undefined) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   }
 
@@ -57,7 +72,8 @@ function App() {
       <main className="h-screen my-8 flex gap-8">
         <ProjectsSidebar
           onStartAddProject={handleStartAddProject}
-          projects={projectState.projects}
+          projects={projectsState.projects}
+          onSelectProject={handleSelectProject}
         />
         {content}
       </main>
