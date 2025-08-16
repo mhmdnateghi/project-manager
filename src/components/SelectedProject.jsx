@@ -1,4 +1,12 @@
-export default function SelectedProject({ project, onDelete }) {
+import Tasks from "./Tasks.jsx";
+
+export default function SelectedProject({
+  project,
+  onDelete,
+  onAddTask,
+  onDeleteTask,
+  tasks,
+}) {
   const formattedDate = new Date(project.dueDate).toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
@@ -9,7 +17,7 @@ export default function SelectedProject({ project, onDelete }) {
       <header className="pb-4 mb-4 border-b-2 border-stone-300">
         <div className="flex items-center justify-between">
           <button
-            className="text-stone-600 hover:text-stone-950 bg-stone-400 hover:bg-stone-500 rounded-md px-4 py-2"
+            className="rounded-md px-4 py-2 bg-stone-700 text-stone-400 hover:bg-stone-600 hover:text-stone-100"
             onClick={onDelete}
           >
             حذف
@@ -23,7 +31,7 @@ export default function SelectedProject({ project, onDelete }) {
           {project.description}
         </p>
       </header>
-      TASKS
+      <Tasks onAdd={onAddTask} onDelete={onDeleteTask} tasks={tasks} />
     </div>
   );
 }

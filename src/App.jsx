@@ -34,6 +34,7 @@ function App() {
       const newProject = {
         ...projectData,
         id: Math.random(),
+        tasks: [],
       };
 
       return {
@@ -65,20 +66,61 @@ function App() {
     });
   }
 
+  function handleAddTask(text) {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        projects: prevState.projects.map((project) => {
+          if (project.id === prevState.selectedProjectID) {
+            return {
+              ...project,
+              tasks: [{ text, id: Math.random() }, ...project.tasks],
+            };
+          }
+          return project;
+        }),
+      };
+    });
+  }
+
+  function handleDeleteTask(id) {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        projects: prevState.projects.map((project) => {
+          if (project.id === prevState.selectedProjectID) {
+            return {
+              ...project,
+              tasks: project.tasks.filter((task) => task.id != id),
+            };
+          }
+          return project;
+        }),
+      };
+    });
+  }
+
   const selectedProject = projectsState.projects.find(
     (project) => project.id === projectsState.selectedProjectID
   );
 
-  let content = (
-    <SelectedProject project={selectedProject} onDelete={handleDeleteProject} />
-  );
-
+  let content;
   if (projectsState.selectedProjectID === null) {
     content = (
       <NewProject onAdd={handleAddProject} onCancel={handleCancelAddProject} />
     );
   } else if (projectsState.selectedProjectID === undefined) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
+  } else if (selectedProject) {
+    content = (
+      <SelectedProject
+        project={selectedProject}
+        onDelete={handleDeleteProject}
+        onAddTask={handleAddTask}
+        onDeleteTask={handleDeleteTask}
+        tasks={selectedProject.tasks}
+      />
+    );
   }
 
   return (
@@ -88,6 +130,7 @@ function App() {
           onStartAddProject={handleStartAddProject}
           projects={projectsState.projects}
           onSelectProject={handleSelectProject}
+          selectedProjectId={projectsState.selectedProjectID}
         />
         {content}
       </main>
